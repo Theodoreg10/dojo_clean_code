@@ -3,7 +3,6 @@ from time import sleep
 from rich.console import Console
 from rich.prompt import Prompt
 from rich.table import Table
-
 from services.file_service import save_data_to_file, load_data_from_file
 from services.encryption_service import encrypt, decrypt
 
@@ -47,7 +46,6 @@ def save_account_list(password_list, password):
 def handle_login_existing_account():
     password = input("Enter your master password: ")
     console.print("")
-
     # Try and decipher the vault to check master password
     try:
         password_list = load_account_list(password)
@@ -77,10 +75,8 @@ def print_accounts(account_list):
 
 def show_options():
     table = Table(title="Options")
-
     table.add_column("Option", style="cyan")
     table.add_column("Name", style="magenta")
-
     # adding the rows
     table.add_row("1", "Store new website account")
     table.add_row("2", "Retrieve website account")
@@ -88,7 +84,6 @@ def show_options():
     table.add_row("4", "Quit the program")
     table.add_row("5", "Show all saved accounts")
     table.add_row("6", "Delete everything")
-
     console.print(table, justify="center")
 
 
