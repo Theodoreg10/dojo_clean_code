@@ -65,7 +65,7 @@ def handle_register_new_account():
     return [], password
 
 
-def print_account(account_list):
+def print_accounts(account_list):
     table_account = Table(title="Comptes")
     table_account.add_column("Website name", style="cyan")
     table_account.add_column("Username", style="magenta")
@@ -103,7 +103,7 @@ def handle_show_account(account_list, account_name):
     for i in range(len(account_list)):
         if account_list[i]["website_name"] == account_name:
             account.append(account_list[i])
-    print_account(account)
+    print_accounts(account)
 
 
 def handle_exit():
@@ -163,7 +163,7 @@ def main():
         elif option == "4":
             handle_exit()
         elif option == "5":
-            print_account(account_list)
+            print_accounts(account_list)
         elif option == "6":
             save_account_list([], master_password)
         else:
