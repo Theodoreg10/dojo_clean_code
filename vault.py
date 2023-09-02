@@ -86,6 +86,7 @@ def show_options():
     table.add_row("4", "Quit the program")
     table.add_row("5", "Show all saved accounts")
     table.add_row("6", "Delete everything")
+    table.add_row("7", "See reused passwords")
     console.print(table, justify="center")
 
 
@@ -130,6 +131,23 @@ def handle_delete_account(account_list, master_password):
         save_account_list(account_list, master_password)
 
 
+def handle_reused_passwords(account_list):
+    password_dict = {}
+    used_password = []
+    for account in account_list:
+        if account["password"] in used_password:
+            password_dict[account["password"]].append(account["website_name"])
+        else:
+            password_dict[account["password"]] = []
+            password_dict[account["password"]].append(account["website_name"])
+            used_password.append(account["password"])
+    reused_list = []
+    for password in used_password:
+        if len(password_dict[password]) >= 2:
+            reused_list.append(password_dict[password])
+    return reused_list
+
+
 def main():
     files = os.listdir()
     console.clear()
@@ -164,6 +182,9 @@ def main():
             print_accounts(account_list)
         elif option == "6":
             save_account_list([], master_password)
+        elif option == "7":
+            reused_list = handle_reused_passwords(account_list)
+            console.print(reused_list)
         else:
             print("Invalid command...")
             print("Restarting...")
