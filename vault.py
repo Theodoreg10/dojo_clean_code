@@ -19,7 +19,8 @@ def prompt_add_password():
     website_name = Prompt.ask("Enter website name").lower()
     username = Prompt.ask("Enter username for {}".format(website_name))
     password = Prompt.ask("Enter password")
-    return {"website_name": website_name, "username": username, "password": password}
+    return {"website_name": website_name,
+            "username": username, "password": password}
 
 
 def handle_add_account(password_list, master_password):
@@ -69,7 +70,8 @@ def print_accounts(account_list):
     table_account.add_column("Username", style="magenta")
     table_account.add_column("Password", style="magenta")
     for account in account_list:
-        table_account.add_row(account["website_name"], account["username"], account["password"])
+        table_account.add_row(account["website_name"],
+                              account["username"], account["password"])
     console.print(table_account, justify="center")
 
 
@@ -123,7 +125,8 @@ def handle_delete_account(account_list, master_password):
     if len(account_list) == nbr_initial_account:
         console.print("No accounts were found matching this website name!")
     else:
-        console.print("Account {} successfully deleted from vault".format(account_name))
+        console.print("Account {} successfully deleted from vault".
+                      format(account_name))
         save_account_list(account_list, master_password)
 
 
